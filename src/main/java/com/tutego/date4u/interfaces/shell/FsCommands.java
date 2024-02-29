@@ -8,13 +8,13 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.util.unit.DataSize;
 
 import com.tutego.date4u.core.FileSystem;
-import com.tutego.date4u.core.config.FileSystemConfigurationProperties;
+import com.tutego.date4u.core.configuration.Date4uApplicationConfig;
 
 @ShellComponent
 public class FsCommands {
 
     @Autowired
-    FileSystemConfigurationProperties fileSystemConfig;
+    Date4uApplicationConfig date4uConfig;
     @Value("${date4u.filesystem.minimum-free-disk-space}")
     private long minimumFreeDiskSpace;
     @Autowired
@@ -38,6 +38,6 @@ public class FsCommands {
 
     @ShellMethod("Display required free disk space")
     public long minimumFreeDiskSpace() {
-        return fileSystemConfig.minimumFreeDiskSpace();
+        return date4uConfig.getFilesystem().getMinimumFreeDiskSpace();
     }
 }
