@@ -49,3 +49,14 @@
 1709366526339:upload-photo "C:/Users/Nati/Desktop/Haset/IMG_0517.JPG"
 1709367557304:quit
 1709367574645:upload-photo "C:/Users/Nati/Desktop/Haset/IMG_0517.JPG"
+1709383453611:help
+1709480908934:exists "J:/"
+1709480916325:quit
+1709481304619:exists "J://"
+1709481311127:exists "C://"
+1709481342898:exists "C:\\"\n\n"
+1709481353595:exists "C:/"
+1709481360052:exists "C:/nati"
+1709481367675:exists "C:/users"
+1709481371871:exists "C:/users/nati"
+1709481377276:exists "C:/users/nati/desktop"

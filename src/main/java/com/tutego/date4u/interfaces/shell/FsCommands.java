@@ -1,5 +1,7 @@
 package com.tutego.date4u.interfaces.shell;
 
+import java.nio.file.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -9,6 +11,7 @@ import org.springframework.util.unit.DataSize;
 
 import com.tutego.date4u.core.FileSystem;
 import com.tutego.date4u.core.configuration.Date4uApplicationConfig;
+
 
 @ShellComponent
 public class FsCommands {
@@ -39,5 +42,10 @@ public class FsCommands {
     @ShellMethod("Display required free disk space")
     public long minimumFreeDiskSpace() {
         return date4uConfig.getFilesystem().getMinimumFreeDiskSpace();
+    }
+    @ShellMethod("Display if a path exists")
+    public String exists(Path path){
+        boolean exists = fs.exists(path);
+        return String.format("Path to '%s' %s exists",path, exists?"does":"doesn't");
     }
 }

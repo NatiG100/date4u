@@ -20,7 +20,9 @@ public class FileSystem {
             throw new UncheckedIOException(e);
         }
     }
-
+    public boolean exists(Path path){
+        return Files.exists(path);
+    }
     public long getFreeDiskSpace(){
         return root.toFile().getFreeSpace();
     }
