@@ -29,16 +29,25 @@ public class FileSystem {
 
     public byte[] load(String fileName){
         try{
-            return Files.readAllBytes(root.resolve(fileName));
+            Path path = resolve(fileName);
+            return Files.readAllBytes(path);
         }catch(IOException e){
             throw new UncheckedIOException(e);
         }
     }
     public void store(String filename, byte[] bytes){
         try{
-            Files.write(root.resolve(filename), bytes);
+            Path path = resolve(filename);
+            Files.write(path, bytes);
         }catch(IOException e){
             throw new UncheckedIOException(e);
         }
+    }
+    private Path resolve(String filename){
+        Path path = root.resolve(filename).toAbsolutePath().normalize();
+        if(!path.startsWith(root)){
+            throw new SecurityException("Access to "+path+" denied");
+        }
+        return path;
     }
 }
