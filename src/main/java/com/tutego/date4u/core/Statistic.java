@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-import com.tutego.date4u.core.core.NewPhotoEvent;
+import com.tutego.date4u.core.event.NewPhotoEvent;
 
 @Service
 public class Statistic {

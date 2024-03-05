@@ -11,8 +11,10 @@ import java.io.UncheckedIOException;
 
 import javax.imageio.ImageIO;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+@Primary
 @Service("fastThumbnailRenderer")
 public class AwtNearestNeighborThumbnail implements Thumbnail {
     private static BufferedImage create(BufferedImage source, int width, int height){
