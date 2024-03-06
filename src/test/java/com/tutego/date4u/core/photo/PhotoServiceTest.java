@@ -1,4 +1,4 @@
-package com.tutego.date4u.photo;
+package com.tutego.date4u.core.photo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -16,26 +16,35 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.tutego.date4u.core.FileSystem;
 import com.tutego.date4u.core.photo.AwtBicubicThumbnail;
 import com.tutego.date4u.core.photo.PhotoService;
 
-// @SpringBootTest()
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest("spring.shell.interactive.enabled=false")
 public class PhotoServiceTest {
     private static final byte[] MINIMAL_JPG = Base64.getDecoder().decode(
             "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP////////////////////////////////////"
                     + "//////////////////////////////////////////////////wgALCAABAAEBAREA/8QA"
                     + "FBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=");
 
-    @Mock
+    @MockBean
     private FileSystem fileSystem;
-    @Spy
-    private AwtBicubicThumbnail thumbnail;
-    @InjectMocks
+    @SpyBean @Autowired
+    private Thumbnail thumbnail;
+    @Autowired
     private PhotoService photoService;
+
+    @BeforeEach
+    void setupFileSystem(){
+        given(fileSystem.getFreeDiskSpace()).willReturn(1L);
+        given(fileSystem.load(anyString())).willReturn(MINIMAL_JPG);
+    }
 
     @Test
     void successful_photo_uplad() {
