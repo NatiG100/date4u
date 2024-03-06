@@ -11,20 +11,12 @@ import java.util.Base64;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.context.ApplicationEventPublisher;
 
 import com.tutego.date4u.core.FileSystem;
-import com.tutego.date4u.core.photo.AwtBicubicThumbnail;
-import com.tutego.date4u.core.photo.PhotoService;
 
 @SpringBootTest("spring.shell.interactive.enabled=false")
 public class PhotoServiceTest {
@@ -35,13 +27,13 @@ public class PhotoServiceTest {
 
     @MockBean
     private FileSystem fileSystem;
-    @SpyBean @Autowired
+    @SpyBean
     private Thumbnail thumbnail;
     @Autowired
     private PhotoService photoService;
 
     @BeforeEach
-    void setupFileSystem(){
+    void setupFileSystem() {
         given(fileSystem.getFreeDiskSpace()).willReturn(1L);
         given(fileSystem.load(anyString())).willReturn(MINIMAL_JPG);
     }
