@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 
+//@DirtiesContext //restarts context before each test
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties",properties = "spring.shell.interactive.enabled=false")
 class Date4uApplicationTests {
