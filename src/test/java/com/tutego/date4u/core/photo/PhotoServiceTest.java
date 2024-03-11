@@ -18,7 +18,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import com.tutego.date4u.core.FileSystem;
 
-@SpringBootTest("spring.shell.interactive.enabled=false")
+@SpringBootTest({"spring.shell.interactive.enabled=false","spring.shell.interactive.enabled=false"})
 public class PhotoServiceTest {
     private static final byte[] MINIMAL_JPG = Base64.getDecoder().decode(
             "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP////////////////////////////////////"

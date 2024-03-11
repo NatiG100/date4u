@@ -62,3 +62,10 @@
 1709481377276:exists "C:/users/nati/desktop"
 1709536134037:quit
 1710154867039:help
+1710155175165:upload-photo "C:/Users/USER/image.jpg"
+1710155185754:stacktrace
+1710155223317:upload-photo "C:/Users/USER/image.jpg"
+1710155255267:upload-photo "C:\\Users\\USER\\image.jpg"
+1710155296768:upload-photo "C:/Users/USER/Documents/image.jpg"
+1710155301031:help
+1710155344192:show-photo c2ff3ba1-d974-46c2-84b4-60a5a89a0a11

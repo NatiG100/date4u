@@ -34,6 +34,11 @@ public class PhotoService {
         }
     }
 
+    @Cacheable(cacheNames = "date4u.filesystem.file", key = "#photo.name")
+    public Optional<byte[]> download(Photo photo) {
+        return download(photo.getName());
+    }
+
     public String upload(byte[] imageBytes) {
         String imageName = UUID.randomUUID().toString();
         // First: store original image
