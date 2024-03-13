@@ -2,13 +2,24 @@ package com.tutego.date4u.core.photo;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+
 public class Photo {
     public Long id;
-    
-    public Long profile;
-    public String name;
+    @Min(1) public Long profile;
+    @NotNull @Pattern(regexp = "[\\w_-]{1,200}") public String name;
     public boolean isProfilePhoto;
-    public LocalDateTime created;
+    @NotNull @Past public LocalDateTime created;
+    public Photo(){}
+    public Photo(Long id, Long profile, String name, boolean isProfilePhoto, LocalDateTime created){
+        this.profile = profile;
+        this.name = name;
+        this.isProfilePhoto = isProfilePhoto;
+        this.created = created;
+    }
     public Long getId() {
         return id;
     }
