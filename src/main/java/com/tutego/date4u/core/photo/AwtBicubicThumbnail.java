@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 import javax.imageio.ImageIO;
 
@@ -31,12 +33,12 @@ public class AwtBicubicThumbnail implements Thumbnail{
     }
 
     @Override
-    public byte[] thumbnail(byte[] imageBytes) {
+    public Future<byte[]> thumbnail(byte[] imageBytes) {
         try (InputStream is = new ByteArrayInputStream(imageBytes);
                 ByteArrayOutputStream boas = new ByteArrayOutputStream()) {
             BufferedImage thumbnail = create(ImageIO.read(is), 200, 200);
             ImageIO.write(thumbnail, "jpg", boas);
-            return boas.toByteArray();
+            return CompletableFuture.completedFuture(boas.toByteArray()) ;
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
