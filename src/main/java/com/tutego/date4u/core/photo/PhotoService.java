@@ -12,11 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.tutego.date4u.core.FileSystem;
 import com.tutego.date4u.core.event.NewPhotoEvent;
 
+import jakarta.validation.Valid;
+
 @Service
+@Validated
 public class PhotoService {
     private final FileSystem fs;
     private final Thumbnail thumbnail;
@@ -39,7 +43,7 @@ public class PhotoService {
     }
 
     @Cacheable(cacheNames = "date4u.filesystem.file", key = "#photo.name")
-    public Optional<byte[]> download(Photo photo) {
+    public Optional<byte[]> download(@Valid Photo photo) {
         return download(photo.getName());
     }
 
