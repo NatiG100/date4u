@@ -8,10 +8,10 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 
 public class Photo {
-    public Long id;
-    @Min(1) public Long profile;
-    @NotNull @Pattern(regexp = "[\\w_-]{1,200}") public String name;
-    public boolean isProfilePhoto;
+    private Long id;
+    @Min(1) private Long profile;
+    @NotNull @Pattern(regexp = "[\\w_-]{1,200}") private String name;
+    private boolean isProfilePhoto;
     @NotNull @Past public LocalDateTime created;
     public Photo(){}
     public Photo(Long id, Long profile, String name, boolean isProfilePhoto, LocalDateTime created){
@@ -50,5 +50,9 @@ public class Photo {
     public void setCreated(LocalDateTime created) {
         this.created = created;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Photo[" +id + ']';
+    }
 }
